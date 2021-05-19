@@ -8,10 +8,28 @@ import 'package:freshfood/log_sign_page/widget/rounded_input_field.dart';
 import 'package:freshfood/log_sign_page/widget/rounded_password_field.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
+
+
 class Body extends StatefulWidget{
+  static bool isLoggedIn;
+  // static fuction doUserLogout;
+  // static _Body of(BuildContext context) => context.ancestorStateOfType(const TypeMatcher<_Body>());
+  // static doUserLogout(BuildContext context) async {
+  //   final user = await ParseUser.currentUser();
+  //   var response = await user.logout();
+  //   if (response.success) {
+  //     showSuccess("User was successfully logout!",context);
+  //     setState(() {
+  //       isLoggedIn = false;
+  //     });
+  //   } else {
+  //     showError(response.error.message,context);
+  //   }
+  // }
+
+
   @override
   _Body createState() => _Body();
-
 }
 
 
@@ -19,7 +37,6 @@ class _Body extends State<Body> {
   final controllerUsername = TextEditingController();
   final controllerPassword = TextEditingController();
   bool isLoggedIn = false;
-
   // const Body({
   //   Key key,
   // }) : super(key: key);
@@ -27,6 +44,7 @@ class _Body extends State<Body> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    // bool isLoggedIn;
     return Background(
       child: SingleChildScrollView(
         child: Column(
