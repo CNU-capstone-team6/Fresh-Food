@@ -31,7 +31,8 @@ class LoginCheck extends StatelessWidget {
           onPressed: press,
           // onTab : tab,
           child: Text(
-            login ? "Log in" : "Log out",
+            "Log out",
+            // login ? "Log in" : "Log out",
             style: TextStyle(color: textColor),
           ),
         ),

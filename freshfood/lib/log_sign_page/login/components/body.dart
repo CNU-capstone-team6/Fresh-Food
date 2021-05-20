@@ -6,6 +6,7 @@ import 'package:freshfood/log_sign_page/widget/already_have_account.dart';
 import 'package:freshfood/log_sign_page/widget/rounded_button.dart';
 import 'package:freshfood/log_sign_page/widget/rounded_input_field.dart';
 import 'package:freshfood/log_sign_page/widget/rounded_password_field.dart';
+import 'package:freshfood/registration/registmain/regist_page.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 
@@ -46,6 +47,7 @@ class _Body extends State<Body> {
     Size size = MediaQuery.of(context).size;
     // bool isLoggedIn;
     return Background(
+
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -78,7 +80,7 @@ class _Body extends State<Body> {
             ),
             RoundedButton(
               text: "LOG IN",
-              press: isLoggedIn ? null : () => doUserLogin(context),
+              press:  isLoggedIn ? null : () => doUserLogin(context),
             ),
             RoundedButton(
               text: "LOG OUT",
@@ -114,7 +116,10 @@ class _Body extends State<Body> {
             new FlatButton(
               child: const Text("OK"),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegistPage()),
+                );
               },
             ),
           ],
@@ -156,9 +161,11 @@ class _Body extends State<Body> {
       setState(() {
         isLoggedIn = true;
       });
+
     } else {
       showError(response.error.message,context);
     }
+
 
   }
 

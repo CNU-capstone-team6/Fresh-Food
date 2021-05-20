@@ -1,9 +1,6 @@
 name: freshfood
 description: A FreshFood project 01
-provider: ^4.3.3
-web3dart: ^1.2.3
-http: ^0.12.2
-web_socket_channel: ^1.2.0
+
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -37,6 +34,10 @@ dependencies:
 #  barcode_widget: ^1.5.0
   flutter_svg: ^0.19.1
   parse_server_sdk_flutter: ^2.1.0
+  provider: ^4.3.3
+  web3dart: ^1.2.3
+  http: ^0.12.2
+  web_socket_channel: ^1.2.0
 
 dev_dependencies:
   flutter_test:
@@ -61,8 +62,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-#    - src/artifacts/
-
+    - build/contracts/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
