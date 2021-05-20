@@ -6,19 +6,18 @@ import 'package:freshfood/widget/icon_rounded_button.dart';
 import 'package:provider/provider.dart';
 
 class Body extends StatelessWidget {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController originController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    var contractLink = Provider.of<ContractLinking>(context);
-    TextEditingController nameController = TextEditingController();
-    TextEditingController originController = TextEditingController();
 
+    var contractLink = Provider.of<ContractLinking>(context);
     Size size = MediaQuery.of(context).size;
     // This size provide us total height and width of our screen
     return Background(
       child: Center(
-        child: contractLink.isLoading
-        ? CircularProgressIndicator()
-        : SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Form(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -47,6 +46,7 @@ class Body extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 30),
+
                   child: ElevatedButton(
                     child: Text(
                       '등록',
@@ -56,7 +56,7 @@ class Body extends StatelessWidget {
                       primary: Colors.green,
                     ),
                     onPressed: () {
-                      contractLink.addFood(3,nameController.text,originController.text);
+                      contractLink.addFood(BigInt.from(3),nameController.text,originController.text);
                       nameController.clear();
                       originController.clear();
                     },

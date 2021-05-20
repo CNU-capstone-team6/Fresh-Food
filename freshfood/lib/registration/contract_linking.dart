@@ -7,8 +7,8 @@ import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
   
 class ContractLinking extends ChangeNotifier {
-  final String _rpcUrl = "http://127.0.0.1:8545";
-  final String _wsUrl = "ws://127.0.0.1:8545/";
+  final String _rpcUrl = "http://10.0.2.2:8545";
+  final String _wsUrl = "ws://10.0.2.2:8545/";
   final String _privateKey = "0xfd3703827b8ed0246aef453d961d25f311c24314bdcaa642a5481b465ef7e899";
 
   Web3Client _client;
@@ -34,10 +34,13 @@ class ContractLinking extends ChangeNotifier {
     // establish a connection to the ethereum rpc node. The socketConnector
     // property allows more efficient event streams over websocket instead of
     // http-polls. However, the socketConnector property is experimental.
-    _client = Web3Client(_rpcUrl, Client(), socketConnector: () {
-      return IOWebSocketChannel.connect(_wsUrl).cast<String>();
-    });
-  
+    // _client = Web3Client(_rpcUrl, Client(), socketConnector: () {
+    //   return IOWebSocketChannel.connect(_wsUrl).cast<String>();
+    // });
+    _client = Web3Client(_rpcUrl, new Client());
+    print(_client.getBlockNumber());
+
+
     await getAbi();
     await getCredentials();
     await getDeployedContract();
@@ -71,7 +74,7 @@ class ContractLinking extends ChangeNotifier {
     _getFood = _contract.function("getFood");
   }
   
-  addFood(int number, String name, String origin) async {
+  addFood(BigInt number, String name, String origin) async {
       
     // Getting the current name declared in the smart contract.
     isLoading = true;
@@ -82,7 +85,7 @@ class ContractLinking extends ChangeNotifier {
             contract: _contract, function: _addFood, parameters: [number, name, origin]));
   }
   
-  getFood(int number) async {
+  getFood(BigInt number) async {
       
     // Setting the name to nameToSet(name defined by user)
     var foods = await _client.call(contract: _contract, function: _getFood, params: [number]);
