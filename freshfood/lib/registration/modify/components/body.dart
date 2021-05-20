@@ -4,10 +4,13 @@ import 'package:freshfood/registration/registmain/components/background.dart';
 import 'package:freshfood/registration/modify/f_modify_page.dart';
 import 'package:freshfood/registration/regist_page/f_regist_page.dart';
 import 'package:freshfood/widget/icon_rounded_button.dart';
+import 'package:web3dart/web3dart.dart';
 
 class Body extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     // This size provide us total height and width of our screen
     return Background(
@@ -25,38 +28,7 @@ class Body extends StatelessWidget {
             //   height: size.height * 0.45,
             // ),
             // SizedBox(height: size.height * 0.05),
-            IconRoundedButton(
-              textColor: Colors.black,
-              color: Colors.white54,
-              text: "유통과정 등록",
-              imgpath: "assets/images/main_process.png",
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return f_RegistPage();
-                    },
-                  ),
-                );
-              },
-            ),
-            IconRoundedButton(
-              textColor: Colors.black,
-              color: Colors.white54,
-              text: "유통과정 수정",
-              imgpath: "assets/images/main_process.png",
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return f_ModifyPage();
-                    },
-                  ),
-                );
-              },
-            ),
+
           ],
         ),
       ),

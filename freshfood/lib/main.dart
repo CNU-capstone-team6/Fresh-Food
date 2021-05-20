@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:freshfood/home_page.dart';
+import 'package:freshfood/registration/contract_linking.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:provider/provider.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,14 +30,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: HomePage(),
+    return ChangeNotifierProvider<ContractLinking>(
+      create: (_) => ContractLinking(),
+        child : MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: HomePage(),
+        ),
     );
+
   }
 }
 

@@ -1,63 +1,70 @@
 import 'package:flutter/material.dart';
+import 'package:freshfood/registration/contract_linking.dart';
 
 import 'package:freshfood/registration/registmain/components/background.dart';
-import 'package:freshfood/registration/modify/f_modify_page.dart';
-import 'package:freshfood/registration/regist_page/f_regist_page.dart';
 import 'package:freshfood/widget/icon_rounded_button.dart';
+import 'package:provider/provider.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var contractLink = Provider.of<ContractLinking>(context);
+    TextEditingController nameController = TextEditingController();
+    TextEditingController originController = TextEditingController();
+
     Size size = MediaQuery.of(context).size;
     // This size provide us total height and width of our screen
     return Background(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // Text(
-            //   "환영합니다!",
-            //   style: TextStyle(fontWeight: FontWeight.bold),
-            // ),
-            // SizedBox(height: size.height * 0.05),
-            // SvgPicture.asset(
-            //   "assets/icons/chat.svg",
-            //   height: size.height * 0.45,
-            // ),
-            // SizedBox(height: size.height * 0.05),
-            IconRoundedButton(
-              textColor: Colors.black,
-              color: Colors.white54,
-              text: "유통과정 등록",
-              imgpath: "assets/images/main_process.png",
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return f_RegistPage();
+      child: Center(
+        child: contractLink.isLoading
+        ? CircularProgressIndicator()
+        : SingleChildScrollView(
+          child: Form(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(top: 29),
+                  child: TextFormField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Food Name",
+                        hintText: "Food Name",
+                        icon: Icon(Icons.drive_file_rename_outline)),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 29),
+                  child: TextFormField(
+                    controller: originController,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Food Origin",
+                        hintText: "Food Origin",
+                        icon: Icon(Icons.drive_file_rename_outline)),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 30),
+                  child: ElevatedButton(
+                    child: Text(
+                      '등록',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                    ),
+                    onPressed: () {
+                      contractLink.addFood(3,nameController.text,originController.text);
+                      nameController.clear();
+                      originController.clear();
                     },
                   ),
-                );
-              },
+                ),
+              ],
             ),
-            IconRoundedButton(
-              textColor: Colors.black,
-              color: Colors.white54,
-              text: "유통과정 수정",
-              imgpath: "assets/images/main_process.png",
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return f_ModifyPage();
-                    },
-                  ),
-                );
-              },
-            ),
-          ],
+          ),
         ),
       ),
     );

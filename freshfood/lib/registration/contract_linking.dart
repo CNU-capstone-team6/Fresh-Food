@@ -7,9 +7,9 @@ import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
   
 class ContractLinking extends ChangeNotifier {
-  final String _rpcUrl = "http://10.0.2.2:8545";
-  final String _wsUrl = "ws://10.0.2.2:8545/";
-  final String _privateKey = "Enter Private Key";
+  final String _rpcUrl = "http://127.0.0.1:8545";
+  final String _wsUrl = "ws://127.0.0.1:8545/";
+  final String _privateKey = "0xfd3703827b8ed0246aef453d961d25f311c24314bdcaa642a5481b465ef7e899";
 
   Web3Client _client;
   bool isLoading = true;
@@ -47,12 +47,13 @@ class ContractLinking extends ChangeNotifier {
       
     // Reading the contract abi
     String abiStringFile =
-        await rootBundle.loadString("../../Fresh-Food-Contract/build/contracts/Storage.json");
+        await rootBundle.loadString("build/contracts/Storage.json");
     var jsonAbi = jsonDecode(abiStringFile);
     _abiCode = jsonEncode(jsonAbi["abi"]);
   
     _contractAddress =
-        EthereumAddress.fromHex(jsonAbi["development"]["7545"]["address"]);
+        // EthereumAddress.fromHex("0xde4a68c1c492eba58c526ca1e32040c8b3d2cff1aa6c6037ea7465a79bcbc600");
+        EthereumAddress.fromHex(jsonAbi["networks"]["1621510952794"]["address"]);
   }
   
   Future<void> getCredentials() async {
@@ -78,13 +79,13 @@ class ContractLinking extends ChangeNotifier {
     await _client.sendTransaction(
         _credentials,
         Transaction.callContract(
-            contract: _contract, function: addFood, params: [number, name, origin]));
+            contract: _contract, function: _addFood, parameters: [number, name, origin]));
   }
   
   getFood(int number) async {
       
     // Setting the name to nameToSet(name defined by user)
-    var foods = await _client.call(contract: _contract, function: getFood, params: [number]);
+    var foods = await _client.call(contract: _contract, function: _getFood, params: [number]);
     isLoading = false;
     notifyListeners();
   }
