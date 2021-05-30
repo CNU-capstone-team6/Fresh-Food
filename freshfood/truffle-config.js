@@ -50,7 +50,8 @@ module.exports = {
      port: 8545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none)
     },
-     contracts_build_directory: "./build/contracts/",
+    contracts_build_directory: "./src/artifacts/",
+//     contracts_build_directory: "./build/contracts/",
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
@@ -115,7 +116,7 @@ module.exports = {
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       settings: {          // See the solidity docs for advice about optimization and evmVersion
        optimizer: {
-         enabled: false,
+         enabled: true,
          runs: 200
        },
        evmVersion: "byzantium"

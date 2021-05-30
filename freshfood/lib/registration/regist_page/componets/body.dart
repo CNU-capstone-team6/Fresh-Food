@@ -59,7 +59,9 @@ class Body extends StatelessWidget {
                       contractLink.addFood(BigInt.from(3),nameController.text,originController.text);
                       nameController.clear();
                       originController.clear();
-                    },
+                      // var result = contractLink.getFood(BigInt.from(3));
+                      // print(result);
+                      },
                   ),
                 ),
               ],

@@ -38,6 +38,7 @@ dependencies:
   web3dart: ^1.2.3
   http: ^0.12.2
   web_socket_channel: ^1.2.0
+  flutter_plugin_android_lifecycle: ^1.0.7
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +64,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - build/contracts/
+    - src/artifacts/Storage.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
