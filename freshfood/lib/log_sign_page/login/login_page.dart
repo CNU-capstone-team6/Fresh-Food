@@ -39,21 +39,21 @@ class _LoginPageState extends State<LoginPage> {
                   "참여업체 로그인" ,
                   textAlign: TextAlign.center,)
             ),
-            Expanded(
-              child: LoginCheck(
-                press: !isLoggedIn ? null : () => doUserLogout(context),
-                tab: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return HomePage();
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),
+            // Expanded(
+            //   child: LoginCheck(
+            //     press: !isLoggedIn ? null : () => doUserLogout(context),
+            //     tab: () {
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) {
+            //             return HomePage();
+            //           },
+            //         ),
+            //       );
+            //     },
+            //   ),
+            // ),
           ],
         ),
         backgroundColor: Color(0xff6593F0),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freshfood/home_page.dart';
 import 'package:freshfood/process/components/body.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -16,6 +17,33 @@ class RegistAfterPage extends StatelessWidget{
       appBar: AppBar(
         title: Center(child: Text("상세사항" , textAlign: TextAlign.center,)),
         backgroundColor: Color(0xff6593F0),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return HomePage();
+                    },
+                  ),
+                );
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+        leadingWidth: 70,
+        actions: [
+          Icon(Icons.favorite),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Icon(Icons.search),
+          ),
+          Icon(Icons.more_vert),
+        ],
       ),
       body: Center(
         child: SingleChildScrollView(

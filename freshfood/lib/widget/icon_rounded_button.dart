@@ -31,15 +31,22 @@ class IconRoundedButton extends StatelessWidget {
             side : BorderSide(color: Colors.black)
           ),
           child:Container(
+
             decoration: BoxDecoration(
+
               image: DecorationImage(
+
                 image: AssetImage(
                   imgpath,
                 ),
                 fit: BoxFit.fill,
 
+                colorFilter: ColorFilter.mode(Colors.white54.withOpacity(0.15),BlendMode.dstATop),
+
               ),
+
               ),
+
             child:Padding(
               padding: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
               child: Text(

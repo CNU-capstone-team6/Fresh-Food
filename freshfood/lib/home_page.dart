@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
                     textColor: Colors.black,
                     color: Colors.white54,
                     text: "유통과정 확인",
-                    imgpath: "assets/images/main_top.png",
+                    imgpath: "assets/images/main_process.png",
                     press: () {
                       Navigator.push(
                         context,
@@ -99,7 +99,7 @@ class HomePage extends StatelessWidget {
                     textColor: Colors.black,
                     color: Colors.white54,
                     text: "참여업체 조회",
-                    imgpath: "assets/images/main_top.png",
+                    imgpath: "assets/images/main_inquire.png",
                     press: () {
                       Navigator.push(
                         context,
@@ -115,7 +115,7 @@ class HomePage extends StatelessWidget {
                     textColor: Colors.black,
                     color: Colors.white54,
                     text: "프레시푸드 소개",
-                    imgpath: "assets/images/main_top.png",
+                    imgpath: "assets/images/main_intro.png",
                     press: () {
                       Navigator.push(
                         context,
@@ -131,7 +131,7 @@ class HomePage extends StatelessWidget {
                     textColor: Colors.black,
                     color: Colors.white54,
                     text: "로그인",
-                    imgpath: "assets/images/main_top.png",
+                    imgpath: "assets/images/main_login.png",
                     press: () {
                       Navigator.push(
                         context,
