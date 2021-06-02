@@ -22,6 +22,7 @@ class ContractLinking extends ChangeNotifier {
   DeployedContract _contract;
   ContractFunction _addFood;
   ContractFunction _getFood;
+  ContractFunction _modifyFood;
     
   String deployedName;
 
@@ -75,10 +76,11 @@ class ContractLinking extends ChangeNotifier {
     // Extracting the functions, declared in contract.
     _addFood = _contract.function("addFood");
     _getFood = _contract.function("getFood");
+    _modifyFood = _contract.function("modifyFood");
   }
-  
-  addFood(BigInt number, String name, String origin) async {
-      
+
+  modifyFood(BigInt number, String name, String origin) async {
+
     // Getting the current name declared in the smart contract.
     isLoading = true;
     notifyListeners();
@@ -86,7 +88,19 @@ class ContractLinking extends ChangeNotifier {
         _credentials,
         Transaction.callContract(
             contract: _contract, function: _addFood, parameters: [number, name, origin]));
-  getFood(number);
+    // getFood(number);
+  }
+  addFood( String name, String origin) async {
+
+    // Getting the current name declared in the smart contract.
+    isLoading = true;
+    notifyListeners();
+    await _client.sendTransaction(
+        _credentials,
+        Transaction.callContract(
+            contract: _contract, function: _addFood, parameters: [ name, origin]));
+    // getFood(number);
+
   }
   
   getFood(BigInt number) async {

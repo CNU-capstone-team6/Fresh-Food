@@ -6,6 +6,7 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:freshfood/process/components/qrscan_after.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
+
 class QrDetail {
   final String _output;
 

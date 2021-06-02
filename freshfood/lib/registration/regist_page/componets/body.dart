@@ -1,13 +1,23 @@
-import 'package:flutter/material.dart';
-import 'package:freshfood/registration/contract_linking.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:freshfood/registration/contract_linking.dart';
 import 'package:freshfood/registration/registmain/components/background.dart';
 import 'package:freshfood/widget/icon_rounded_button.dart';
 import 'package:provider/provider.dart';
+import 'package:freshfood/registration/regist_page/componets/regist_after.dart';
+
+class QrCode {
+  final int _output;
+
+  QrCode(this._output);
+}
 
 class Body extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController originController = TextEditingController();
+  int _output= -1;
 
   @override
   Widget build(BuildContext context) {
@@ -56,12 +66,32 @@ class Body extends StatelessWidget {
                       primary: Colors.green,
                     ),
                     onPressed: () {
-                      contractLink.addFood(BigInt.from(3),nameController.text,originController.text);
+                      contractLink.modifyFood(BigInt.from(3),nameController.text,originController.text);
+
+                      // _output = contractLink.addFood(nameController.text,originController.text);
                       nameController.clear();
                       originController.clear();
                       // var result = contractLink.getFood(BigInt.from(3));
                       // print(result);
-                      },
+                      // Timer(Duration(seconds: 2),(){
+                      //   Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder:(context)=>RegistAfterPage( qrCode:_output),
+                      //     ),
+                      //   );// calling a function when user click on button
+                      // };
+                      // ),
+                      // Timer(Duration(seconds: 2),(){
+                      //   Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder:(context)=>RegistAfterPage( qrCode:_output),
+                      //     ),
+                      //   );// calling a function when user click on button
+                      // },
+                      // );
+                    },
                   ),
                 ),
               ],

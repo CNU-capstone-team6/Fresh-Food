@@ -11,12 +11,21 @@ contract Storage is Ownable {
     }
 
     Food[] public foods;
-
+    uint private number;
     mapping (uint => uint) chainLengthCount;
 
-    function addFood(uint _number, string calldata _name, string calldata _origin) external {
+    function addFood(string calldata _name, string calldata _origin) external returns (uint) {
+        foods.push(Food(++number, _name, _origin));
+        chainLengthCount[number]++;
+
+        return number;
+    }
+
+    function modifyFood(uint _number, string calldata _name, string calldata _origin) external {
         foods.push(Food(_number, _name, _origin));
         chainLengthCount[_number]++;
+
+        return _number;
     }
 
     function getFood(uint _number) external view returns (Food[] memory) {
