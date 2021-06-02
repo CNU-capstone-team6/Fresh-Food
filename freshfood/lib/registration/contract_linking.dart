@@ -87,20 +87,20 @@ class ContractLinking extends ChangeNotifier {
     await _client.sendTransaction(
         _credentials,
         Transaction.callContract(
-            contract: _contract, function: _addFood, parameters: [number, name, origin]));
+            contract: _contract, function: _modifyFood, parameters: [number, name, origin]));
     // getFood(number);
   }
-  addFood( String name, String origin) async {
+  addFood(String name, String origin) async {
 
     // Getting the current name declared in the smart contract.
     isLoading = true;
     notifyListeners();
-    await _client.sendTransaction(
+    var number = await _client.sendTransaction(
         _credentials,
         Transaction.callContract(
             contract: _contract, function: _addFood, parameters: [ name, origin]));
     // getFood(number);
-
+    return number;
   }
   
   getFood(BigInt number) async {

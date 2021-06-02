@@ -25,7 +25,6 @@ contract Storage is Ownable {
         foods.push(Food(_number, _name, _origin));
         chainLengthCount[_number]++;
 
-        return _number;
     }
 
     function getFood(uint _number) external view returns (Food[] memory) {
