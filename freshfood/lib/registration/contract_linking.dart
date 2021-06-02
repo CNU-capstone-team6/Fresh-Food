@@ -100,6 +100,7 @@ class ContractLinking extends ChangeNotifier {
         Transaction.callContract(
             contract: _contract, function: _addFood, parameters: [ name, origin]));
     // getFood(number);
+
     return number;
   }
   

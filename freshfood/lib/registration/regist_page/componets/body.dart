@@ -74,24 +74,16 @@ class Body extends StatelessWidget {
                       originController.clear();
                       // var result = contractLink.getFood(BigInt.from(3));
                       // print(result);
-                      // Timer(Duration(seconds: 2),(){
-                      //   Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder:(context)=>RegistAfterPage( qrCode:_output),
-                      //     ),
-                      //   );// calling a function when user click on button
-                      // };
-                      // ),
-                      // Timer(Duration(seconds: 2),(){
-                      //   Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder:(context)=>RegistAfterPage( qrCode:_output),
-                      //     ),
-                      //   );// calling a function when user click on button
-                      // },
-                      // );
+                      _output = 1;
+                      Timer(Duration(seconds: 2),(){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder:(context)=>RegistAfterPage( qrCode:_output),
+                          ),
+                        );// calling a function when user click on button
+                      },
+                      );
                     },
                   ),
                 ),

@@ -84,7 +84,7 @@ class Body extends StatelessWidget {
                   Row(
                     children: [
                       Icon(
-                        Icons.error_outline,
+                        Icons.info_outline,
                         color: Colors.blueAccent,
                       ),
                       Text(

@@ -39,6 +39,9 @@ dependencies:
   http: ^0.12.2
   web_socket_channel: ^1.2.0
   flutter_plugin_android_lifecycle: ^1.0.7
+  qr_flutter:
+    git:
+      url: git://github.com/lukef/qr.flutter.git
 
 dev_dependencies:
   flutter_test:
