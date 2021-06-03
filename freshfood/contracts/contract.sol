@@ -1,9 +1,7 @@
 pragma solidity >= 0.4.0 ;
 pragma experimental ABIEncoderV2;
 
-import "./ownable.sol";
-
-contract Storage is Ownable {
+contract Storage {
     struct Food {
         uint number;
         string name;
@@ -14,18 +12,18 @@ contract Storage is Ownable {
     uint private number;
     mapping (uint => uint) chainLengthCount;
 
-    function addFood(string calldata _name, string calldata _origin) external returns (uint) {
+    function addFood(string calldata _name, string calldata _origin) external {
         foods.push(Food(++number, _name, _origin));
         chainLengthCount[number]++;
+    }
 
+    function getNumber() external view returns (uint) {
         return number;
     }
 
     function modifyFood(uint _number, string calldata _name, string calldata _origin) external {
         foods.push(Food(_number, _name, _origin));
         chainLengthCount[_number]++;
-
-        return _number;
     }
 
     function getFood(uint _number) external view returns (Food[] memory) {

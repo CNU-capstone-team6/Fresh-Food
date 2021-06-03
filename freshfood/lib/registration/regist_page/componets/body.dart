@@ -66,7 +66,10 @@ class Body extends StatelessWidget {
                       primary: Colors.green,
                     ),
                     onPressed: () {
-                      contractLink.modifyFood(BigInt.from(3),nameController.text,originController.text);
+                      //contractLink.modifyFood(BigInt.from(3),nameController.text,originController.text);
+                      //contractLink.addFood(nameController.text, originController.text);
+                      contractLink.getFood(BigInt.from(3));
+                      //contractLink.getNumber();
 
                       // _output = contractLink.addFood(nameController.text,originController.text);
                       nameController.clear();

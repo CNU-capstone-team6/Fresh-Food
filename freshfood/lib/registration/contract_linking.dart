@@ -7,9 +7,9 @@ import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
   
 class ContractLinking extends ChangeNotifier {
-  final String _rpcUrl = "http://10.0.2.2:8545"; //7545로 변경
-  final String _wsUrl = "ws://10.0.2.2:8545/";
-  final String _privateKey = "0x0f9b8f5ab41e36bf9aa5fd28a74618703bff7d2be44712031c17bdedc04f8e0a"; //너 개인키
+  final String _rpcUrl = "http://10.0.2.2:7545"; //7545로 변경
+  final String _wsUrl = "ws://10.0.2.2:7545/";
+  final String _privateKey = "36e5bd7b9a889df0f5c7fc6e4f8fec7758dcbaea97df3ec9a076208f4744a653"; //너 개인키
 
   Web3Client _client;
   bool isLoading = true;
@@ -22,6 +22,7 @@ class ContractLinking extends ChangeNotifier {
   DeployedContract _contract;
   ContractFunction _addFood;
   ContractFunction _getFood;
+  ContractFunction _getNumber;
   ContractFunction _modifyFood;
     
   String deployedName;
@@ -59,7 +60,7 @@ class ContractLinking extends ChangeNotifier {
     _abiCode = jsonEncode(jsonAbi["abi"]);
   
     _contractAddress =
-        EthereumAddress.fromHex("0x7bE51B2EA4CE3A100aEe3C6C9fE68CA3531E5681"); //address 중에 나는 1번 사용(암거나 사용해도 될듯 앱에는 address가 있더라구)
+        EthereumAddress.fromHex("0x74d81BadD6d4b6F80Dfc20d74782EF7cE1b53F36"); //address 중에 나는 1번 사용(암거나 사용해도 될듯 앱에는 address가 있더라구)
         // EthereumAddress.fromHex(jsonAbi["networks"]["1622391058350"]["address"]);
   }
   
@@ -77,6 +78,8 @@ class ContractLinking extends ChangeNotifier {
     _addFood = _contract.function("addFood");
     _getFood = _contract.function("getFood");
     _modifyFood = _contract.function("modifyFood");
+    _getNumber = _contract.function("getNumber");
+
   }
 
   modifyFood(BigInt number, String name, String origin) async {
@@ -87,7 +90,7 @@ class ContractLinking extends ChangeNotifier {
     await _client.sendTransaction(
         _credentials,
         Transaction.callContract(
-            contract: _contract, function: _addFood, parameters: [number, name, origin]));
+            contract: _contract, function: _modifyFood, parameters: [number, name, origin], maxGas: 10000000));
     // getFood(number);
   }
   addFood( String name, String origin) async {
@@ -98,13 +101,17 @@ class ContractLinking extends ChangeNotifier {
     await _client.sendTransaction(
         _credentials,
         Transaction.callContract(
-            contract: _contract, function: _addFood, parameters: [ name, origin]));
-    // getFood(number);
+            contract: _contract, function: _addFood, parameters: [ name, origin], maxGas: 10000000));
+    var number = await _client.call(contract: _contract, function: _getNumber, params: []);
+    print(number);
+  }
 
+  getNumber() async {
+    var number = await _client.call(contract: _contract, function: _getNumber, params: []);
+    print(number);
   }
   
   getFood(BigInt number) async {
-      
     // Setting the name to nameToSet(name defined by user)
     var foods = await _client.call(contract: _contract, function: _getFood, params: [number]);
     print(foods);
