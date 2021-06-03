@@ -8,7 +8,7 @@ contract Storage {
         string origin;
     }
 
-    Food[] public foods;
+    Food[] private foods;
     uint private number;
     mapping (uint => uint) chainLengthCount;
 
