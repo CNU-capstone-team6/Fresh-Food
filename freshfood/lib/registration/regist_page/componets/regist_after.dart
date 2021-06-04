@@ -50,7 +50,7 @@ class RegistAfterPage extends StatelessWidget{
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text("value is $qrCode"),
+              // Text("value is $qrCode"),
 
               QrImage(
                 data: "$qrCode",

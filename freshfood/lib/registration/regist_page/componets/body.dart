@@ -65,16 +65,21 @@ class Body extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       primary: Colors.green,
                     ),
-                    onPressed: () {
-                      var number =contractLink.addFood(nameController.text,originController.text);
-                      // _output = number.toInt();
-                      print(number);
-                      // _output = contractLink.addFood(nameController.text,originController.text);
+                    onPressed: ()  async {
+                      // var number =contractLink.addFood(nameController.text,originController.text);
+                      int number = await contractLink.addFood(nameController.text, originController.text);
+                      // BigInt number = await contractLink.getNumber();
+
+                      List<String> foodlist = await contractLink.getFood(BigInt.from(number));
+                      // print("foodlist");
+                      print(foodlist);
+
+                      _output = number;
                       nameController.clear();
                       originController.clear();
                       // var result = contractLink.getFood(BigInt.from(3));
                       // print(result);
-                      _output = 1;
+                      // _output = 1;
                       Timer(Duration(seconds: 2),(){
                         Navigator.push(
                           context,

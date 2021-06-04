@@ -26,10 +26,14 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: size.height * 0.1),
-          SvgPicture.asset(
-            "assets/icons/login.svg",
-            height: size.height * 0.30,
-          ),
+          // SvgPicture.asset(
+          //   "assets/icons/login.svg",
+          //   height: size.height * 0.30,
+          // ),
+          SizedBox
+            (height: size.height * 0.30,
+              // width: 200,
+              child: Image.asset( "assets/images/main_name.png")),
           new Expanded(
             child: GridView.count(
                 primary: false,

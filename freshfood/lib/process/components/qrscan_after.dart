@@ -1,39 +1,1 @@
-
-
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:freshfood/process/components/body.dart';
-import 'package:freshfood/registration/contract_linking.dart';
-import 'package:provider/provider.dart';
-
-class DetailPage extends StatelessWidget{
-  final String qrDetail;
-
-  DetailPage({Key key, @required this.qrDetail}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    var contractLink = Provider.of<ContractLinking>(context);
-    var foodinfo =contractLink.getFood(BigInt.from(int.parse(qrDetail)));
-    return Scaffold(
-      backgroundColor: Color(0xffBBD0ED),
-      appBar: AppBar(
-        title: Center(child: Text("상세사항" , textAlign: TextAlign.center,)),
-        backgroundColor: Color(0xff6593F0),
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(qrDetail),
-
-
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+import 'dart:async' show Future;import 'dart:convert';import 'package:async/async.dart';import 'package:flutter/material.dart';import 'package:flutter/cupertino.dart';import 'package:freshfood/process/components/body.dart';import 'package:freshfood/registration/contract_linking.dart';import 'package:freshfood/widget/text_button.dart';import 'package:provider/provider.dart';class DetailPage extends StatelessWidget{  // final String qrDetail;  final String foodname;  final String foodorigin;  DetailPage({Key key, @required  this.foodname, this.foodorigin }) : super(key: key);  // final AsyncMemoizer _memoizer = AsyncMemoizer();  @override  Widget build(BuildContext context)  {    Size size = MediaQuery.of(context).size;    print("foodname");    print("$foodname");    // print("t");    // var contractLink = Provider.of<ContractLinking>(context);    // contractLink.init();    // var foodinfo = contractLink.getFood(BigInt.from(int.parse(qrDetail)));    // print("foodinfo");    // print(foodinfo);    // getList() async {    //   return this._memoizer.runOnce(() async {    //     List<String> foodlist = await contractLink.getFood(BigInt.from(int.parse(qrDetail)));    //     return foodlist;    //   });    // }    // static loadDocuments() async{    //   List foodlist = await contractLink.getFood(BigInt.from(int.parse(qrDetail)));    //   return foodlist;    // }    return Scaffold(      backgroundColor: Color(0xffBBD0ED),      appBar: AppBar(        title: Center(child: Text("상세사항" , textAlign: TextAlign.center,)),        backgroundColor: Color(0xff6593F0),      ),      body: Center(        child: SingleChildScrollView(          child: Column(            mainAxisAlignment: MainAxisAlignment.center,            children: <Widget>[              // Text("$foodname"),              // Text(foodorigin),              DetailButton(                title: "제품 이름",                text: "$foodname",                textColor: Colors.black,                color: Colors.white70,                press: (){},                // text : getList()                // style: TextStyle(fontSize: 15),              ),              DetailButton(                title: "원산지",                text: "$foodorigin",                textColor: Colors.black,                color: Colors.white70,                press: (){},                // text : getList()                // style: TextStyle(fontSize: 15),              ),              // Text(foodinfo),              // FutureBuilder<List>(              //     future: _fetch1() ,              //     builder: (context,snapshot) {              //       //해당 부분은 data를 아직 받아 오지 못했을때 실행되는 부분을 의미한다.              //       if (snapshot.hasData == false) {              //         return CircularProgressIndicator();              //       }              //       //error가 발생하게 될 경우 반환하게 되는 부분              //       // ignore: missing_return              //       else if (snapshot.hasError) {              //         return Padding(              //           padding: const EdgeInsets.all(8.0),              //           child: Text(              //             'Error: ${snapshot.error}',              //             style: TextStyle(fontSize: 15),              //           ),              //         );              //       }              //       // 데이터를 정상적으로 받아오게 되면 다음 부분을 실행하게 되는 것이다.              //       else{              //         List foodlist = snapshot.data ?? [];              //         print("foodlist");              //         print(foodlist);              //         return Padding(              //           padding: const EdgeInsets.all(8.0),              //           child: DetailButton(              //             text : snapshot.data.toString(),              //              //              //              //             // style: TextStyle(fontSize: 15),              //           ),              //         );              //       }              //     })            ],          ),        ),      ),    );  }}

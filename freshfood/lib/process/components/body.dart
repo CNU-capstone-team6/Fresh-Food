@@ -5,35 +5,47 @@ import 'package:freshfood/process/components/background.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:freshfood/process/components/qrscan_after.dart';
+import 'package:freshfood/registration/contract_linking.dart';
+import 'package:provider/provider.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
 
 class QrDetail {
-  final String _output;
+  // final List<String> foodlist;
+  final String foodname;
+  final String foodorigin;
+  // final String _output;
 
-  QrDetail(this._output);
+  QrDetail(this.foodname,this.foodorigin);
 }
 
 class Body extends StatelessWidget {
 
   String _output="";
+  String foodname ="";
+  String foodorigin ="";
+  // List<String> foodlist;
 
-  Future _scanQR() async {
-    String cameraScanResult = await scanner.scan();
-    _output = cameraScanResult;
-
-
-    // try {
-    //   String cameraScanResult = await scanner.scan();
-    //   setState(() {
-    //     _output = cameraScanResult; // setting string result with cameraScanResult
-    //   });
-    // } on PlatformException catch (e) {
-    //   print(e);
-    // }
-  }
   @override
   Widget build(BuildContext context) {
+    var contractLink = Provider.of<ContractLinking>(context);
     Size size = MediaQuery.of(context).size;
+
+    Future _scanQR() async {
+      String cameraScanResult = await scanner.scan();
+      _output = cameraScanResult;
+      List<String> foodlist = await contractLink.getFood(BigInt.from(int.parse(_output)));
+      print(foodlist);
+      foodname = foodlist[0];
+      foodorigin = foodlist[1];
+      // try {
+      //   String cameraScanResult = await scanner.scan();
+      //   setState(() {
+      //     _output = cameraScanResult; // setting string result with cameraScanResult
+      //   });
+      // } on PlatformException catch (e) {
+      //   print(e);
+      // }
+    }
     // This size provide us total height and width of our screen
     return Background(
       child: SingleChildScrollView(
@@ -61,13 +73,13 @@ class Body extends StatelessWidget {
 
             SizedBox(height: size.height * 0.12),
             FlatButton(
-                onPressed:() {
+                onPressed:() async {
                   _scanQR();
                   Timer(Duration(seconds: 2),(){
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder:(context)=>DetailPage( qrDetail:_output),
+                        builder:(context)=>DetailPage(foodname: foodname,foodorigin: foodorigin, ),
                       ),
                     );// calling a function when user click on button
                    },

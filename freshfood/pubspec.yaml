@@ -37,6 +37,7 @@ dependencies:
   provider: ^4.3.3
   web3dart: ^1.2.3
   http: ^0.12.2
+  async: ^2.3.0
   web_socket_channel: ^1.2.0
   flutter_plugin_android_lifecycle: ^1.0.7
   qr_flutter:
