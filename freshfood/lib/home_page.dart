@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:freshfood/Inquire_page.dart';
+import 'package:freshfood/inquire/Inquire_page.dart';
 import 'package:freshfood/introduce_page.dart';
 import 'package:freshfood/log_sign_page/login/login_page.dart';
 import 'package:freshfood/log_sign_page/widget/rounded_button.dart';

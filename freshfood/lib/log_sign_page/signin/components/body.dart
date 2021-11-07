@@ -23,7 +23,7 @@ class Body extends StatelessWidget {
   final controllerBNumber = TextEditingController();
   final controllerContactInf = TextEditingController();
   final controllerAdress = TextEditingController();
-
+  final controllerItems = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +79,13 @@ class Body extends StatelessWidget {
               controller: controllerAdress,
               keyboardType : TextInputType.text,
               labelText: "주소",
+              onChanged: (value) {},
+            ),
+            RoundedInputField(
+              hintText: "취급 품목",
+              controller: controllerItems,
+              keyboardType : TextInputType.text,
+              labelText: "취급 품목",
               onChanged: (value) {},
             ),
             RoundedButton(
@@ -176,6 +183,7 @@ class Body extends StatelessWidget {
     final companyname = controllerCompanyname.text.trim();
     final contact_inf = int.parse(controllerContactInf.text.trim());
     final adress = controllerAdress.text.trim();
+    final items = controllerItems.text.trim();
   
     // ParseObject parseObject = ParseObject("user");
 
@@ -185,7 +193,8 @@ class Body extends StatelessWidget {
       ..set("bnumber", bnumber)
       ..set("companyname", companyname)
       ..set("contact_inf", contact_inf)
-      ..set("adress", adress);
+      ..set("adress", adress)
+      ..set("items", items);
     // var user = ParseUser().create("test", "test1", "test22");
 
     var response = await user.signUp();

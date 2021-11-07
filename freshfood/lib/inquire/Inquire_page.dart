@@ -14,8 +14,6 @@ class InquirePage extends StatelessWidget {
       body: Center(
         child: Column(
           children: <Widget>[
-
-
             // RaisedButton(
             //   textColor: Colors.white,
             //   color: Colors.redAccent,
