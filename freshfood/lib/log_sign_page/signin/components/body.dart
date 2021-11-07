@@ -12,13 +12,17 @@ import 'package:freshfood/log_sign_page/widget/rounded_input_field.dart';
 import 'package:freshfood/log_sign_page/widget/rounded_password_field.dart';
 import 'package:freshfood/log_sign_page/widget/text_field_container.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:freshfood/log_sign_page/login/login_page.dart';
 
 
 class Body extends StatelessWidget {
   final controllerUsername = TextEditingController();
   final controllerPassword = TextEditingController();
+  final controllerCompanyname = TextEditingController();
   final controllerEmail = TextEditingController();
   final controllerBNumber = TextEditingController();
+  final controllerContactInf = TextEditingController();
+  final controllerAdress = TextEditingController();
 
 
   @override
@@ -36,6 +40,7 @@ class Body extends StatelessWidget {
               labelText: "ID",
               onChanged: (value) {},
             ),
+
             RoundedInputField(
               hintText: "E-mail",
               controller:controllerEmail,
@@ -53,6 +58,27 @@ class Body extends StatelessWidget {
               controller: controllerBNumber,
               keyboardType : TextInputType.number,
               labelText: "사업자등록번호",
+              onChanged: (value) {},
+            ),
+            RoundedInputField(
+              hintText: "업체명",
+              controller:controllerCompanyname,
+              keyboardType : TextInputType.text,
+              labelText: "업체명",
+              onChanged: (value) {},
+            ),
+            RoundedInputField(
+              hintText: "연락처",
+              controller: controllerContactInf,
+              keyboardType : TextInputType.number,
+              labelText: "연락처",
+              onChanged: (value) {},
+            ),
+            RoundedInputField(
+              hintText: "주소",
+              controller: controllerAdress,
+              keyboardType : TextInputType.text,
+              labelText: "주소",
               onChanged: (value) {},
             ),
             RoundedButton(
@@ -109,7 +135,11 @@ class Body extends StatelessWidget {
             new FlatButton(
               child: const Text("OK"),
               onPressed: () {
-                Navigator.of(context).pop();
+                // Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
               },
             ),
           ],
@@ -143,13 +173,19 @@ class Body extends StatelessWidget {
     final email = controllerEmail.text.trim();
     final password = controllerPassword.text.trim();
     final bnumber = int.parse(controllerBNumber.text.trim());
+    final companyname = controllerCompanyname.text.trim();
+    final contact_inf = int.parse(controllerContactInf.text.trim());
+    final adress = controllerAdress.text.trim();
   
     // ParseObject parseObject = ParseObject("user");
 
     // var user =  ParseUser.createUser("TestFlutter", "TestPassword123", "TestFlutterSDK@gmail.com");
 
     final user = ParseUser.createUser(username, password, email)
-    ..set("bnumber", bnumber);
+      ..set("bnumber", bnumber)
+      ..set("companyname", companyname)
+      ..set("contact_inf", contact_inf)
+      ..set("adress", adress);
     // var user = ParseUser().create("test", "test1", "test22");
 
     var response = await user.signUp();
@@ -159,6 +195,7 @@ class Body extends StatelessWidget {
     if (response.success) {
       // user = response.result;
       showSuccess(context);
+
     } else {
       showError(response.error.message,context);
     }

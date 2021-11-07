@@ -7,7 +7,7 @@ import 'package:freshfood/log_sign_page/widget/already_have_account.dart';
 import 'package:freshfood/log_sign_page/widget/function.dart';
 import 'package:freshfood/log_sign_page/widget/login_check.dart';
 import 'package:freshfood/log_sign_page/widget/rounded_button.dart';
-import 'package:freshfood/log_sign_page/login/login_page.dart';
+
 import 'package:freshfood/log_sign_page/widget/rounded_input_field.dart';
 import 'package:freshfood/log_sign_page/widget/rounded_password_field.dart';
 import 'package:freshfood/registration/registmain/regist_page.dart';
