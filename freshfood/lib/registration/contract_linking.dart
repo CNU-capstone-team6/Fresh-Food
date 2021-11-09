@@ -81,7 +81,7 @@ class ContractLinking extends ChangeNotifier {
     _getNumber = _contract.function("getNumber");
   }
 
-  modifyFood(BigInt number, String name, String origin) async {
+  modifyFood(BigInt number, String name, String origin, String author) async {
 
     // Getting the current name declared in the smart contract.
     isLoading = true;
@@ -89,10 +89,10 @@ class ContractLinking extends ChangeNotifier {
     await _client.sendTransaction(
         _credentials,
         Transaction.callContract(
-            contract: _contract, function: _modifyFood, parameters: [number, name, origin], maxGas: 15000000));
+            contract: _contract, function: _modifyFood, parameters: [number, name, origin, author], maxGas: 15000000));
     // getFood(number);
   }
-  Future<int> addFood( String name, String origin) async {
+  Future<int> addFood( String name, String origin, String author) async {
 
     // Getting the current name declared in the smart contract.
     isLoading = true;
@@ -100,7 +100,7 @@ class ContractLinking extends ChangeNotifier {
     await _client.sendTransaction(
         _credentials,
         Transaction.callContract(
-            contract: _contract, function: _addFood, parameters: [ name, origin], maxGas: 15000000));
+            contract: _contract, function: _addFood, parameters: [ name, origin, author], maxGas: 15000000));
     // var number = await _client.call(contract: _contract, function: _getNumber, params: []);
     // print(number);
     BigInt number = await getNumber();
@@ -116,16 +116,18 @@ class ContractLinking extends ChangeNotifier {
     return _number;
   }
 
-  Future<List<String>> getFood(BigInt number) async {
+  Future<List> getFood(BigInt number) async {
     // Setting the name to nameToSet(name defined by user)
     isLoading = true;
     notifyListeners();
     var foods = await _client.call(contract: _contract, function: _getFood, params: [number]);
-    // print(foods);
+    print(foods);
     // List foodlist = List<
-    List<String> foodlist = List<String>();
-    foodlist.add(foods[0][0][1].toString());
-    foodlist.add(foods[0][0][2].toString());
+    List foodlist = List();
+    for(var i in foods) {
+      foodlist.add([i[0][1], i[0][2], i[0][3]]);
+    }
+    print(foodlist);
     // isLoading = false;
     // notifyListeners();
     return foodlist;
