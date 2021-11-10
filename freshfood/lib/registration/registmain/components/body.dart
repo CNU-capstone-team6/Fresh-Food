@@ -44,7 +44,7 @@ class Body extends StatelessWidget {
             IconRoundedButton(
               textColor: Colors.black,
               color: Colors.white54,
-              text: "유통과정 수정",
+              text: "유통과정 추가",
               imgpath: "assets/images/main_process.png",
               press: () {
                 Navigator.push(
