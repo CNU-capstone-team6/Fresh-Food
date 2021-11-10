@@ -11,31 +11,7 @@ class SearchPage extends StatefulWidget {
   SearchPage({Key key, @required  this.items, this.copname }) : super(key: key);
   _SearchPage createState() => _SearchPage();
 }
-class Search{
-  String copname;
-  String items;
-  String adress;
-  int contact_inf;
 
-  Search(this.copname,this.items,this.adress,this.contact_inf);
-}
-class SearchTile extends StatelessWidget{
-  SearchTile(this._search);
-  final Search _search;
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return ListTile(
-      leading: Icon(Icons.add_shopping_cart_outlined),
-      title: Text(_search.copname),
-      // subtitle: Text("${_person.age}세"),
-      // isTreeLine: true,
-      // trailing: PersonHandIcon(_person.isLeftHand),
-    );
-  }
-
-}
 class _SearchPage extends State<SearchPage>{
 
   List<DetailButton> buttonsList = new List<DetailButton>();
