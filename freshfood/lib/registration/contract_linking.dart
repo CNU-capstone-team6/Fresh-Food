@@ -82,7 +82,7 @@ class ContractLinking extends ChangeNotifier {
     _getNumber = _contract.function("getNumber");
   }
 
-  modifyFood(BigInt number, String name, String origin, String author) async {
+  modifyFood(BigInt number, String author) async {
 
     // Getting the current name declared in the smart contract.
     isLoading = true;
@@ -90,7 +90,7 @@ class ContractLinking extends ChangeNotifier {
     await _client.sendTransaction(
         _credentials,
         Transaction.callContract(
-            contract: _contract, function: _modifyFood, parameters: [number, name, origin, author], maxGas: 15000000));
+            contract: _contract, function: _modifyFood, parameters: [number,author], maxGas: 15000000));
     // getFood(number);
   }
   Future<int> addFood( String name, String origin, String author) async {

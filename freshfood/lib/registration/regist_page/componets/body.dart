@@ -26,7 +26,7 @@ class _Body extends State<Body>{
   // final TextEditingController authorController = TextEditingController();
   int _output= -1;
   List<ParseObject> results = <ParseObject>[];
-  String author ="";
+  String author ="none";
   bool isCheck = false;
   void doUserQuery() async {
     // final QueryBuilder<ParseUser> queryUsers =
@@ -109,9 +109,9 @@ class _Body extends State<Body>{
                       int number = await contractLink.addFood(nameController.text, originController.text, author);
                       // BigInt number = await contractLink.getNumber();
 
-                      List<String> foodlist = await contractLink.getFood(BigInt.from(number));
-                      print("foodlist");
-                      print(foodlist);
+                      // List<String> foodlist = await contractLink.getFood(BigInt.from(number));
+                      // print("foodlist");
+                      // print(foodlist);
 
                       // _output = number;
                       nameController.clear();
