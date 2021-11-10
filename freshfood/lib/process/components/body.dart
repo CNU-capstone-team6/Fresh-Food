@@ -34,7 +34,7 @@ class Body extends StatelessWidget {
       String cameraScanResult = await scanner.scan();
       _output = cameraScanResult;
       List foodlist = await contractLink.getFood(BigInt.from(int.parse(_output)));
-      // print(foodlist);
+      print("foodlist $foodlist");
       // foodname = foodlist[0];
       // foodorigin = foodlist[1];
       // try {

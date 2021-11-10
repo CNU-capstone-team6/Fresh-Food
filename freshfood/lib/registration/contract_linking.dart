@@ -122,13 +122,13 @@ class ContractLinking extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
     var foods = await _client.call(contract: _contract, function: _getFood, params: [number]);
-    print(foods);
+    // print(foods);
     List foodlist = List();
     // List<String> foodlist = List<String>();
     for(var i in foods) {
       foodlist.add([i[0][1], i[0][2], i[0][3]]);
     }
-    print(foodlist);
+    // print(foodlist);
     // isLoading = false;
     // notifyListeners();
     return foodlist;
