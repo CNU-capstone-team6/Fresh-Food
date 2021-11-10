@@ -116,14 +116,14 @@ class ContractLinking extends ChangeNotifier {
     return _number;
   }
 
-  Future<List> getFood(BigInt number) async {
+  Future<List<List<String>> getFood(BigInt number) async {
     // Setting the name to nameToSet(name defined by user)
     isLoading = true;
     notifyListeners();
     var foods = await _client.call(contract: _contract, function: _getFood, params: [number]);
     print(foods);
     // List foodlist = List<
-    List foodlist = List();
+    List<List<String>> foodlist = List<List<String>>();
     for(var i in foods) {
       foodlist.add([i[0][1], i[0][2], i[0][3]]);
     }
