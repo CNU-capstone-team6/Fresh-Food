@@ -10,16 +10,19 @@ class SearchPage extends StatefulWidget {
 
   SearchPage({Key key, @required  this.items, this.copname }) : super(key: key);
   _SearchPage createState() => _SearchPage();
+
+
 }
 
 class _SearchPage extends State<SearchPage>{
 
   List<DetailButton> buttonsList = new List<DetailButton>();
   List<ParseObject> results = <ParseObject>[];
-  bool getInfo ;
+  bool getInfo =false;
+
   void getUserInfo() async {
       // results = [];
-      if(getInfo != true) {
+      if(getInfo ==false) {
         print("if 실행완료");
         final QueryBuilder<ParseObject> parseQuery = QueryBuilder<ParseObject>(
             ParseObject('_User'));
@@ -63,6 +66,7 @@ class _SearchPage extends State<SearchPage>{
     // if(getInfo == false) {
     //   print("getuserinfo 실행완료");
       getUserInfo();
+      // print("${widget.items}");
     // }
     //   print("resulte length ${results.toString()}");
       return Scaffold(
