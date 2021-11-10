@@ -23,6 +23,9 @@ class DetailButton extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       width: size.width * 0.8,
+      decoration: BoxDecoration(
+        color: Colors.white70,
+      ),
       child: ClipRRect(
 
         child: FlatButton(

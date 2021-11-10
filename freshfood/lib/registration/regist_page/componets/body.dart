@@ -67,14 +67,14 @@ class Body extends StatelessWidget {
                     ),
                     onPressed: ()  async {
                       // var number =contractLink.addFood(nameController.text,originController.text);
-                      int number = await contractLink.addFood(nameController.text, originController.text);
+                      // int number = await contractLink.addFood(nameController.text, originController.text);
                       // BigInt number = await contractLink.getNumber();
 
-                      List<String> foodlist = await contractLink.getFood(BigInt.from(number));
+                      // List<String> foodlist = await contractLink.getFood(BigInt.from(number));
                       // print("foodlist");
-                      print(foodlist);
+                      // print(foodlist);
 
-                      _output = number;
+                      // _output = number;
                       nameController.clear();
                       originController.clear();
                       // var result = contractLink.getFood(BigInt.from(3));

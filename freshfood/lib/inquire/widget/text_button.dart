@@ -3,15 +3,19 @@ import 'package:freshfood/constants.dart';
 
 
 class DetailButton extends StatelessWidget {
-  final String text;
-  final String title;
+  final String copname;
+  final String adress;
+  final String contact_inf;
+  final String item;
   final Function press;
   final Color color, textColor;
 
   const DetailButton({
     Key key,
-    this.text,
-    this.title,
+    this.copname,
+    this.adress,
+    this.contact_inf,
+    this.item,
     this.press,
     this.color = kPrimaryColor,
     this.textColor = Colors.black,
@@ -23,6 +27,9 @@ class DetailButton extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       width: size.width * 0.8,
+      decoration: BoxDecoration(
+        color: Colors.white70,
+      ),
       child: ClipRRect(
 
         child: FlatButton(
@@ -48,7 +55,7 @@ class DetailButton extends StatelessWidget {
                     ))
                 ),
                 child: Text(
-                  title,
+                  copname,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
@@ -57,7 +64,15 @@ class DetailButton extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.01),
               Text(
-                text,
+                item,
+                style: TextStyle(color: textColor , fontSize: 14),
+              ),
+              Text(
+                adress,
+                style: TextStyle(color: textColor , fontSize: 14),
+              ),
+              Text(
+                contact_inf,
                 style: TextStyle(color: textColor , fontSize: 14),
               ),
             ],

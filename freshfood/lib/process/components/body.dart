@@ -33,10 +33,10 @@ class Body extends StatelessWidget {
     Future _scanQR() async {
       String cameraScanResult = await scanner.scan();
       _output = cameraScanResult;
-      List<List<String>> foodlist = await contractLink.getFood(BigInt.from(int.parse(_output)));
-      print(foodlist);
-      foodname = foodlist[0];
-      foodorigin = foodlist[1];
+      // List<String> foodlist = await contractLink.getFood(BigInt.from(int.parse(_output)));
+      // print(foodlist);
+      // foodname = foodlist[0];
+      // foodorigin = foodlist[1];
       // try {
       //   String cameraScanResult = await scanner.scan();
       //   setState(() {
