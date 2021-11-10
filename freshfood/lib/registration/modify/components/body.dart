@@ -77,13 +77,13 @@ class _Body extends State<Body>{
                 FlatButton(
                     onPressed:() async {
                       _scanQR();
-                      // if(scanoutput != -1){
-                      //   showAlertDialog(context);
-                      // }
-                      Timer(Duration(seconds: 2),(){
-                        showAlertDialog(context);// calling a function when user click on button
-                      },
-                      );
+                      if(scanoutput != -1){
+
+                      }
+                      // Timer(Duration(seconds: 2),(){
+                      //   showAlertDialog(context);// calling a function when user click on button
+                      // },
+                      // );
                     },
                     child: Image.asset( "assets/images/qr_click.JPG")
                 ),

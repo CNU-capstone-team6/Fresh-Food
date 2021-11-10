@@ -91,7 +91,8 @@ class ContractLinking extends ChangeNotifier {
         _credentials,
         Transaction.callContract(
             contract: _contract, function: _modifyFood, parameters: [number,author], maxGas: 15000000));
-    // getFood(number);
+    getFood(number);
+
   }
   Future<int> addFood( String name, String origin, String author) async {
 
@@ -122,13 +123,18 @@ class ContractLinking extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
     var foods = await _client.call(contract: _contract, function: _getFood, params: [number]);
-    // print(foods);
+    print(" foods list 검사${foods[0]}");
     List foodlist = List();
-    // List<String> foodlist = List<String>();
+    //준서야 여기부터 for문으로 좀 어케해봐라
     for(var i in foods) {
+
       foodlist.add([i[0][1], i[0][2], i[0][3]]);
     }
-    // print(foodlist);
+    // for(var i in foods[0]) {
+    //
+    //   foodlist.add();
+    // }
+    print(foodlist);
     // isLoading = false;
     // notifyListeners();
     return foodlist;
