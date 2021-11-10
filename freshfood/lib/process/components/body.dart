@@ -11,11 +11,12 @@ import 'package:qrscan/qrscan.dart' as scanner;
 
 class QrDetail {
   // final List<String> foodlist;
-  final String foodname;
-  final String foodorigin;
+  // final String foodname;
+  // final String foodorigin;
   // final String _output;
+  final List<dynamic> foodlist;
 
-  QrDetail(this.foodname,this.foodorigin);
+  QrDetail(this.foodlist);
 }
 
 class Body extends StatelessWidget {
@@ -23,6 +24,8 @@ class Body extends StatelessWidget {
   String _output="";
   String foodname ="";
   String foodorigin ="";
+  List foodlist=[] ;
+
   // List<String> foodlist;
 
   @override
@@ -33,7 +36,8 @@ class Body extends StatelessWidget {
     Future _scanQR() async {
       String cameraScanResult = await scanner.scan();
       _output = cameraScanResult;
-      List foodlist = await contractLink.getFood(BigInt.from(int.parse(_output)));
+      foodlist = await contractLink.getFood(BigInt.from(int.parse(_output)));
+      // foodlist = List<dynamic>.from(_foodlist);
       print("foodlist $foodlist");
       // foodname = foodlist[0];
       // foodorigin = foodlist[1];
@@ -75,11 +79,11 @@ class Body extends StatelessWidget {
             FlatButton(
                 onPressed:() async {
                   _scanQR();
-                  Timer(Duration(seconds: 2),(){
+                  Timer(Duration(seconds: 3),(){
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder:(context)=>DetailPage(foodname: foodname,foodorigin: foodorigin, ),
+                        builder:(context)=>DetailPage(foodlist:foodlist ,),
                       ),
                     );// calling a function when user click on button
                    },

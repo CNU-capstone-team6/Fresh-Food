@@ -123,18 +123,17 @@ class ContractLinking extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
     var foods = await _client.call(contract: _contract, function: _getFood, params: [number]);
-    print(" foods list 검사${foods[0]}");
+    // print(" foods list 검사${foods[0]}");
     List foodlist = List();
-    //준서야 여기부터 for문으로 좀 어케해봐라
-    for(var i in foods) {
+    for(var i in foods[0]) {
 
-      foodlist.add([i[0][1], i[0][2], i[0][3]]);
+      foodlist.add(i);
     }
     // for(var i in foods[0]) {
     //
     //   foodlist.add();
     // }
-    print(foodlist);
+    // print(foodlist);
     // isLoading = false;
     // notifyListeners();
     return foodlist;
