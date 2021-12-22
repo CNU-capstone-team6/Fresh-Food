@@ -19,7 +19,7 @@ contract Storage {
         chainLengthCount[number]++;
     }
 
-    // 식자재 번호 조회 -> QR 코드 이용
+    // 다음에 생성되는 식자재의 번호
     function getNumber() external view returns (uint) {
         return number;
     }
