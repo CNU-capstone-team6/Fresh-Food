@@ -19,7 +19,7 @@ contract Storage {
         chainLengthCount[number]++;
     }
 
-    // 다음에 생성되는 식자재의 번호
+    // 식자재의 번호를 받아온다.
     function getNumber() external view returns (uint) {
         return number;
     }
